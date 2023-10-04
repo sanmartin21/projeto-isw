@@ -1,0 +1,19 @@
+services:
+  backend:
+    image: node:latest
+    command: sh -c "npm install && node server.js"
+    ports:
+      - 3001:3001
+    working_dir: /src
+    volumes:
+      - ./back-end/:/src
+  frontend:
+    image: node:latest
+    command: sh -c "npm install && npm start"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./front-end/:/app
+    depends_on:
+      - backend
